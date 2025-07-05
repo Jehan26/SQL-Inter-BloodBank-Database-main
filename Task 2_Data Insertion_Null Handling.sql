@@ -1,49 +1,71 @@
-1. Insert for Department:
-INSERT INTO Department VALUES (1, 'Computer Science');
-INSERT INTO Department VALUES (2, 'Electronics');
-INSERT INTO Department VALUES (3, 'Mechanical');
+-- Task 2: Insert, Update, and Delete Data
 
-2.  Insert for Student:
-INSERT INTO Student VALUES (101, 'Keerthna SSM', 'keerthna@example.com', 1);
-INSERT INTO Student VALUES (102, 'Arjun R', 'arjun@example.com', 2);
-INSERT INTO Student VALUES (103, 'Meena S', 'meena@example.com', 1);
+-- -----------------------------------------------------
+-- INSERT DATA
+-- -----------------------------------------------------
 
-3. Insert for Faculty:
-INSERT INTO Faculty VALUES (201, 'Dr. Ravi Kumar', 'ravi@college.edu', 1);
-INSERT INTO Faculty VALUES (202, 'Dr. Priya S', 'priya@college.edu', 2);
+-- Blood Types
+INSERT INTO BloodTypes (Type) VALUES 
+('A+'), ('A-'), ('B+'), ('B-'), ('AB+'), ('AB-'), ('O+'), ('O-');
 
-4. Insert for Course:
-INSERT INTO Course VALUES (301, 'Database Systems', 4, 201, 1);
-INSERT INTO Course VALUES (302, 'Digital Electronics', 3, 202, 2);
-INSERT INTO Course VALUES (303, 'Operating Systems', 4, 201, 1);
+-- Staff
+INSERT INTO Staff (Name, Role, Contact) VALUES
+('Dr. Anjali Mehta', 'Technician', '999-123-4567'),
+('Dr. Ravi Kapoor', 'Nurse', '999-987-6543');
 
-5. Insert for Enrollment:
-INSERT INTO Enrollment VALUES (101, 301, '2025-06-20');
-INSERT INTO Enrollment VALUES (101, 303, '2025-06-21');
-INSERT INTO Enrollment VALUES (102, 302, '2025-06-22');
-INSERT INTO Enrollment VALUES (103, 301, '2025-06-22');
+-- Donors
+INSERT INTO Donors (Name, Age, Gender, BloodTypeID) VALUES
+('Rohit Sharma', 28, 'Male', 1),
+('Priya Desai', 24, 'Female', 4),
+('Karan Patel', 32, 'Male', 8);
 
-INSERT INTO Department VALUES (4, NULL); 
-INSERT INTO Student VALUES (104, 'Nisha K', NULL, 4);  
-INSERT INTO Faculty VALUES (203, 'Dr. Naveen', NULL, 4);  
+-- Receivers
+INSERT INTO Receivers (Name, Age, Gender, BloodTypeID) VALUES
+('Meena Joshi', 50, 'Female', 1),
+('Amit Verma', 45, 'Male', 3);
 
-6.Update:
- UPDATE operations
-Updating student email
-UPDATE Student
-SET Email = 'nisha.k@example.com'
-WHERE StudentID = 104;
+-- Blood Donations
+INSERT INTO BloodDonations (DonorID, Date, Quantity, StaffID) VALUES
+(1, '2025-06-01', 450, 1),
+(2, '2025-06-02', 500, 2),
+(3, '2025-06-05', 480, 1);
 
-UPDATE Faculty
-SET Email = 'unknown@college.edu'
-WHERE Email IS NULL;
+-- Blood Requests
+INSERT INTO BloodRequests (ReceiverID, Date, Quantity, StaffID) VALUES
+(1, '2025-06-10', 450, 2),
+(2, '2025-06-12', 500, 1);
 
-7. Delete:
-DELETE operations
-Delete student with missing email 
-DELETE FROM Student
-WHERE Email IS NULL;
+-- -----------------------------------------------------
+-- UPDATE DATA
+-- -----------------------------------------------------
 
-Delete departments with NULL name
-DELETE FROM Department
-WHERE DeptName IS NULL;
+-- Update donor's name and age
+UPDATE Donors
+SET Name = 'Rohit S.', Age = 29
+WHERE ID = 1;
+
+-- Update receiver blood type
+UPDATE Receivers
+SET BloodTypeID = 4
+WHERE ID = 2;
+
+-- Update staff contact info
+UPDATE Staff
+SET Contact = '999-000-1111'
+WHERE Name = 'Dr. Anjali Mehta';
+
+-- -----------------------------------------------------
+-- DELETE DATA
+-- -----------------------------------------------------
+
+-- Delete a donation record
+DELETE FROM BloodDonations
+WHERE ID = 2;
+
+-- Delete a receiver
+DELETE FROM Receivers
+WHERE ID = 1;
+
+-- Delete a donor with no donations
+DELETE FROM Donors
+WHERE ID = 4; -- Only if no foreign key constraint blocks it
